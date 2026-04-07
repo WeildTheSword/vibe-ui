@@ -21,15 +21,16 @@
     justify-content: center;
     align-items: center;
     perspective: 1000px;
+    text-align: center;
   }
 
   .tilt-card {
     position: relative;
-    width: 360px;
+    width: 260px;
     background: #111;
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 44px 36px;
+    border-radius: 12px;
+    padding: 20px 16px;
     transform-style: preserve-3d;
     transition: transform 0.15s ease-out, box-shadow 0.3s ease;
     will-change: transform;
@@ -59,15 +60,15 @@
   }
 
   .card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     background: linear-gradient(135deg, #00ff88, #3b82f6);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
-    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-size: 1rem;
     transform: translateZ(30px);
   }
 
@@ -82,7 +83,7 @@
   }
 
   .card-title {
-    font-size: 1.3rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #fff;
     margin-bottom: 10px;
@@ -90,7 +91,7 @@
   }
 
   .card-desc {
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     color: #777;
     line-height: 1.6;
     transform: translateZ(10px);
@@ -98,9 +99,9 @@
 
   .card-tag {
     display: inline-block;
-    margin-top: 24px;
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    margin-top: 12px;
+    padding: 6px 12px;
+    font-size: 0.7rem;
     font-weight: 500;
     color: #3b82f6;
     background: rgba(59, 130, 246, 0.1);
@@ -109,9 +110,9 @@
   }
 
   .hint {
-    margin-top: 32px;
+    margin-top: 12px;
     color: #444;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 </style>
 </head>

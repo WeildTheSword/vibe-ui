@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tilt Card</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+  }
+
+  .tilt-card {
+    position: relative;
+    width: 360px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 44px 36px;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .tilt-card:hover {
+    border-color: #333;
+  }
+
+  .light-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .tilt-card:hover .light-overlay {
+    opacity: 1;
+  }
+
+  .card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #00ff88, #3b82f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+    transform: translateZ(30px);
+  }
+
+  .card-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    transform: translateZ(20px);
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.6;
+    transform: translateZ(10px);
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 8px;
+    transform: translateZ(15px);
+  }
+
+  .hint {
+    margin-top: 32px;
+    color: #444;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+  <div class="tilt-card" id="tiltCard">
+    <div class="light-overlay" id="lightOverlay"></div>
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <div class="card-title">Interactive 3D Card</div>
+    <div class="card-desc">This card follows your cursor with a subtle 3D tilt effect and dynamic light reflection for a premium feel.</div>
+    <div class="card-tag">Perspective Transform</div>
+  </div>
+  <div class="hint">Hover and move your cursor over the card</div>
+
+  <script>
+    const card = document.getElementById('tiltCard');
+    const overlay = document.getElementById('lightOverlay');
+    const maxTilt = 12;
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
+      const rotateX = ((centerY - y) / centerY) * maxTilt;
+
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.boxShadow = `${-rotateY}px ${rotateX}px 40px rgba(0, 0, 0, 0.3)`;
+
+      const percentX = (x / rect.width) * 100;
+      const percentY = (y / rect.height) * 100;
+      overlay.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.boxShadow = 'none';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease';
+      overlay.style.opacity = '0';
+    });
+
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s ease';
+      overlay.style.opacity = '1';
+    });
+  </script>
+</body>
+</html>

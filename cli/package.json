@@ -1,0 +1,33 @@
+{
+  "name": "vibe-ui",
+  "version": "1.0.0",
+  "description": "Fetch beautiful UI components from your terminal. Browse at WeildTheSword.github.io/vibe-ui",
+  "bin": {
+    "vibe-ui": "./bin/index.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "ui",
+    "components",
+    "animations",
+    "css",
+    "cli",
+    "vibecoding",
+    "design",
+    "effects"
+  ],
+  "author": "WeildTheSword",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeildTheSword/vibe-ui"
+  }
+}

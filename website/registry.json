@@ -1,0 +1,224 @@
+{
+  "version": "1.0.0",
+  "baseUrl": "https://raw.githubusercontent.com/WeildTheSword/vibe-ui/main/components",
+  "categories": [
+    {
+      "id": "text-animations",
+      "name": "Text Animations",
+      "icon": "T",
+      "description": "Typography effects: gradients, glitch, typewriter, morphing"
+    },
+    {
+      "id": "backgrounds",
+      "name": "Background Effects",
+      "icon": "B",
+      "description": "Ambient canvas effects: particles, gradients, mesh, noise"
+    },
+    {
+      "id": "page-transitions",
+      "name": "Page Transitions",
+      "icon": "P",
+      "description": "Full-page enter/exit animations"
+    },
+    {
+      "id": "hover-effects",
+      "name": "Hover Effects",
+      "icon": "H",
+      "description": "Interactive cursor and hover responses"
+    },
+    {
+      "id": "loading-animations",
+      "name": "Loading Animations",
+      "icon": "L",
+      "description": "Spinners, skeletons, progress indicators"
+    },
+    {
+      "id": "scroll-effects",
+      "name": "Scroll Effects",
+      "icon": "S",
+      "description": "Scroll-triggered reveals, parallax, sticky transforms"
+    }
+  ],
+  "components": [
+    {
+      "key": "gradient-wave",
+      "name": "Gradient Wave Text",
+      "description": "Animated gradient that flows through text like a luminous wave",
+      "category": "text-animations",
+      "tags": ["gradient", "text", "css-only", "colorful"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "typewriter-deluxe",
+      "name": "Typewriter Deluxe",
+      "description": "Multi-phrase typewriter with realistic timing and blinking cursor",
+      "category": "text-animations",
+      "tags": ["typewriter", "text", "cursor", "animated"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "glitch-text",
+      "name": "Glitch Text",
+      "description": "Cyberpunk glitch distortion with chromatic aberration",
+      "category": "text-animations",
+      "tags": ["glitch", "cyberpunk", "css-only", "distortion"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "text-reveal-blur",
+      "name": "Text Reveal Blur",
+      "description": "Words fade in from blur with elegant staggered timing",
+      "category": "text-animations",
+      "tags": ["blur", "reveal", "stagger", "elegant"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "particles-drift",
+      "name": "Particles Drift",
+      "description": "Floating particles with proximity-based connecting lines",
+      "category": "backgrounds",
+      "tags": ["particles", "canvas", "ambient", "interactive"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "gradient-mesh",
+      "name": "Gradient Mesh",
+      "description": "Slowly morphing mesh gradient like Stripe and Vercel landing pages",
+      "category": "backgrounds",
+      "tags": ["gradient", "mesh", "css-only", "ambient"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "aurora-glow",
+      "name": "Aurora Glow",
+      "description": "Northern lights effect with shimmering gradient bands",
+      "category": "backgrounds",
+      "tags": ["aurora", "glow", "css-only", "dreamy"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "noise-grain",
+      "name": "Noise Grain",
+      "description": "Subtle animated film grain texture overlay for premium feel",
+      "category": "backgrounds",
+      "tags": ["noise", "grain", "texture", "css-only", "subtle"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "fade-slide-up",
+      "name": "Fade Slide Up",
+      "description": "Elegant staggered fade-and-slide entrance animation",
+      "category": "page-transitions",
+      "tags": ["fade", "slide", "stagger", "entrance"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "curtain-reveal",
+      "name": "Curtain Reveal",
+      "description": "Split-curtain overlay that opens to reveal page content",
+      "category": "page-transitions",
+      "tags": ["curtain", "reveal", "dramatic", "entrance"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "stagger-cards",
+      "name": "Stagger Cards",
+      "description": "Cards animate in one-by-one with cascading delays",
+      "category": "page-transitions",
+      "tags": ["cards", "stagger", "grid", "entrance"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "magnetic-button",
+      "name": "Magnetic Button",
+      "description": "Button that magnetically pulls toward the cursor on hover",
+      "category": "hover-effects",
+      "tags": ["magnetic", "button", "interactive", "cursor"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "glow-border",
+      "name": "Glow Border",
+      "description": "Animated gradient border that traces the card edge on hover",
+      "category": "hover-effects",
+      "tags": ["glow", "border", "gradient", "interactive"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "tilt-card",
+      "name": "Tilt Card",
+      "description": "3D card tilt that follows cursor with light reflection",
+      "category": "hover-effects",
+      "tags": ["3d", "tilt", "perspective", "interactive"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "skeleton-pulse",
+      "name": "Skeleton Pulse",
+      "description": "Shimmer loading placeholders for cards, text, and avatars",
+      "category": "loading-animations",
+      "tags": ["skeleton", "loading", "shimmer", "css-only"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "spinner-orbit",
+      "name": "Spinner Orbit",
+      "description": "Three dots orbiting in a smooth circular chase",
+      "category": "loading-animations",
+      "tags": ["spinner", "dots", "orbit", "css-only"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": true
+    },
+    {
+      "key": "scroll-reveal",
+      "name": "Scroll Reveal",
+      "description": "Elements animate into view as you scroll down the page",
+      "category": "scroll-effects",
+      "tags": ["scroll", "reveal", "intersection-observer", "entrance"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    },
+    {
+      "key": "parallax-hero",
+      "name": "Parallax Hero",
+      "description": "Background scrolls at a different speed than foreground content",
+      "category": "scroll-effects",
+      "tags": ["parallax", "scroll", "hero", "depth"],
+      "files": ["index.html"],
+      "author": "vibe-ui",
+      "cssOnly": false
+    }
+  ]
+}

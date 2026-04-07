@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skeleton Pulse</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 40px 20px;
+  }
+
+  .demo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    max-width: 960px;
+  }
+
+  .skeleton-card {
+    background: #111111;
+    border-radius: 16px;
+    padding: 20px;
+    width: 300px;
+    border: 1px solid #1a1a1a;
+  }
+
+  .skeleton {
+    background: #1a1a1a;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #2a2a2a 40%,
+      #2a2a2a 60%,
+      transparent 100%
+    );
+    animation: shimmer 1.8s ease-in-out infinite;
+    transform: translateX(-100%);
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Card header: avatar + text lines */
+  .skeleton-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .skeleton-text-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .skeleton-line {
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  .skeleton-line--full { width: 75%; }
+  .skeleton-line--half { width: 50%; }
+  .skeleton-line--short { width: 35%; }
+  .skeleton-line--long { width: 90%; }
+
+  /* Image placeholder */
+  .skeleton-image {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* Body text lines */
+  .skeleton-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Variation: stagger the shimmer for depth */
+  .skeleton-card:nth-child(2) .skeleton::after {
+    animation-delay: 0.2s;
+  }
+
+  .skeleton-card:nth-child(3) .skeleton::after {
+    animation-delay: 0.4s;
+  }
+
+  /* Card variant: social post */
+  .skeleton-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .skeleton-action-btn {
+    height: 10px;
+    width: 60px;
+    border-radius: 5px;
+  }
+
+  /* Card variant: media grid */
+  .skeleton-media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .skeleton-media-grid .skeleton-thumb {
+    height: 100px;
+    border-radius: 10px;
+  }
+
+  .skeleton-media-grid .skeleton-thumb:first-child {
+    grid-row: 1 / 3;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Card 1: Classic post skeleton -->
+  <div class="demo-container">
+    <div class="skeleton-card">
+      <div class="skeleton-header">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton-text-group">
+          <div class="skeleton skeleton-line skeleton-line--full"></div>
+          <div class="skeleton skeleton-line skeleton-line--half"></div>
+        </div>
+      </div>
+      <div class="skeleton skeleton-image"></div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line skeleton-line--long"></div>
+        <div class="skeleton skeleton-line skeleton-line--full"></div>
+        <div class="skeleton skeleton-line skeleton-line--short"></div>
+      </div>
+      <div class="skeleton-actions">
+        <div class="skeleton skeleton-action-btn"></div>
+        <div class="skeleton skeleton-action-btn"></div>
+        <div class="skeleton skeleton-action-btn"></div>
+      </div>
+    </div>
+
+    <!-- Card 2: Text-heavy skeleton -->
+    <div class="skeleton-card">
+      <div class="skeleton-header">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton-text-group">
+          <div class="skeleton skeleton-line skeleton-line--full"></div>
+          <div class="skeleton skeleton-line skeleton-line--short"></div>
+        </div>
+      </div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line skeleton-line--long"></div>
+        <div class="skeleton skeleton-line skeleton-line--full"></div>
+        <div class="skeleton skeleton-line skeleton-line--long"></div>
+        <div class="skeleton skeleton-line skeleton-line--half"></div>
+      </div>
+      <div class="skeleton-actions">
+        <div class="skeleton skeleton-action-btn"></div>
+        <div class="skeleton skeleton-action-btn"></div>
+      </div>
+    </div>
+
+    <!-- Card 3: Media grid skeleton -->
+    <div class="skeleton-card">
+      <div class="skeleton-header">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton-text-group">
+          <div class="skeleton skeleton-line skeleton-line--full"></div>
+          <div class="skeleton skeleton-line skeleton-line--half"></div>
+        </div>
+      </div>
+      <div class="skeleton-media-grid">
+        <div class="skeleton skeleton-thumb"></div>
+        <div class="skeleton skeleton-thumb"></div>
+        <div class="skeleton skeleton-thumb"></div>
+      </div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line skeleton-line--long"></div>
+        <div class="skeleton skeleton-line skeleton-line--short"></div>
+      </div>
+      <div class="skeleton-actions">
+        <div class="skeleton skeleton-action-btn"></div>
+        <div class="skeleton skeleton-action-btn"></div>
+        <div class="skeleton skeleton-action-btn"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

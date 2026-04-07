@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curtain Reveal</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .curtain-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .curtain-wrapper::before,
+  .curtain-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #00ff88, #3b82f6);
+    z-index: 1000;
+  }
+
+  .curtain-wrapper::before {
+    left: 0;
+    animation: curtainLeft 1s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  }
+
+  .curtain-wrapper::after {
+    right: 0;
+    animation: curtainRight 1s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  }
+
+  @keyframes curtainLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes curtainRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    opacity: 0;
+    animation: contentFadeIn 0.6s ease 1.1s forwards;
+  }
+
+  @keyframes contentFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .content p {
+    margin-top: 16px;
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  .accent-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #00ff88, #3b82f6);
+    border-radius: 2px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .content h1 {
+      font-size: 2.4rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="curtain-wrapper"></div>
+  <div class="content">
+    <h1>Welcome</h1>
+    <p>The stage is yours</p>
+    <div class="accent-line"></div>
+  </div>
+</body>
+</html>

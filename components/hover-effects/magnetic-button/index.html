@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magnetic Button</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .magnetic-area {
+    padding: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .magnetic-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    will-change: transform;
+  }
+
+  .magnetic-btn:hover {
+    border-color: #555;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.12),
+                0 0 60px rgba(59, 130, 246, 0.06);
+  }
+
+  .magnetic-btn::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(59, 130, 246, 0.15));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .magnetic-btn:hover::before {
+    opacity: 1;
+  }
+
+  .btn-text {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .label {
+    text-align: center;
+    margin-top: 32px;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="magnetic-area" id="magneticArea">
+      <button class="magnetic-btn" id="magneticBtn">
+        <span class="btn-text">Get Started</span>
+      </button>
+    </div>
+    <div class="label">Move your cursor near the button</div>
+  </div>
+
+  <script>
+    const area = document.getElementById('magneticArea');
+    const btn = document.getElementById('magneticBtn');
+    const btnText = btn.querySelector('.btn-text');
+    const strength = 25;
+    const textStrength = 10;
+
+    area.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      const maxDistance = 150;
+
+      if (distance < maxDistance) {
+        const factor = 1 - distance / maxDistance;
+        const moveX = deltaX * factor * (strength / maxDistance) * 2;
+        const moveY = deltaY * factor * (strength / maxDistance) * 2;
+        const textMoveX = deltaX * factor * (textStrength / maxDistance) * 2;
+        const textMoveY = deltaY * factor * (textStrength / maxDistance) * 2;
+
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        btnText.style.transform = `translate(${textMoveX}px, ${textMoveY}px)`;
+      } else {
+        btn.style.transform = 'translate(0, 0)';
+        btnText.style.transform = 'translate(0, 0)';
+      }
+    });
+
+    area.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+      btnText.style.transform = 'translate(0, 0)';
+    });
+  </script>
+</body>
+</html>

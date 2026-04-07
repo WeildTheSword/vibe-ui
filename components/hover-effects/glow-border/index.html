@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow Border</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  @keyframes rotateBorder {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .glow-card {
+    position: relative;
+    width: 360px;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 2px;
+    background: #222;
+    transition: background 0.4s ease;
+  }
+
+  .glow-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+      from 0deg,
+      #00ff88,
+      #3b82f6,
+      #a855f7,
+      #00ff88
+    );
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: rotateBorder 3s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .glow-card:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+
+  .glow-card:hover {
+    background: transparent;
+  }
+
+  .card-inner {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border-radius: 14px;
+    padding: 40px 32px;
+  }
+
+  .card-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #a855f7);
+  }
+
+  .card-meta {
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  .card-meta strong {
+    color: #ccc;
+    font-weight: 500;
+  }
+
+  .hint {
+    text-align: center;
+    margin-top: 32px;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="glow-card">
+      <div class="card-inner">
+        <div class="card-badge">Featured</div>
+        <div class="card-title">Animated Glow Border</div>
+        <div class="card-desc">Hover over this card to see a rotating gradient trace around the border, creating a vivid neon glow effect.</div>
+        <div class="card-footer">
+          <div class="avatar"></div>
+          <div class="card-meta"><strong>Design System</strong> &middot; UI Component</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint">Hover the card to activate the glow</div>
+  </div>
+</body>
+</html>

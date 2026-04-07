@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spinner Orbit</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0a0a0a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 60px 20px;
+  }
+
+  .spinner-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .spinner-label {
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .orbit-spinner {
+    position: relative;
+  }
+
+  /* Small: 32px */
+  .orbit-spinner--sm {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Medium: 56px */
+  .orbit-spinner--md {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Large: 88px */
+  .orbit-spinner--lg {
+    width: 88px;
+    height: 88px;
+  }
+
+  .orbit-dot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: orbit-rotate 1.4s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+
+  .orbit-dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #00ff88;
+  }
+
+  /* Small dot sizing */
+  .orbit-spinner--sm .orbit-dot::before {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Medium dot sizing */
+  .orbit-spinner--md .orbit-dot::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Large dot sizing */
+  .orbit-spinner--lg .orbit-dot::before {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Delays and opacity for chasing effect */
+  .orbit-dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .orbit-dot:nth-child(1)::before {
+    opacity: 1;
+  }
+
+  .orbit-dot:nth-child(2) {
+    animation-delay: -0.2s;
+  }
+  .orbit-dot:nth-child(2)::before {
+    opacity: 0.6;
+  }
+
+  .orbit-dot:nth-child(3) {
+    animation-delay: -0.4s;
+  }
+  .orbit-dot:nth-child(3)::before {
+    opacity: 0.3;
+  }
+
+  @keyframes orbit-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Subtle glow on the primary dot */
+  .orbit-dot:nth-child(1)::before {
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  }
+</style>
+</head>
+<body>
+
+  <div class="spinner-row">
+    <div class="orbit-spinner orbit-spinner--sm">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+    </div>
+    <span class="spinner-label">Small</span>
+  </div>
+
+  <div class="spinner-row">
+    <div class="orbit-spinner orbit-spinner--md">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+    </div>
+    <span class="spinner-label">Medium</span>
+  </div>
+
+  <div class="spinner-row">
+    <div class="orbit-spinner orbit-spinner--lg">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+    </div>
+    <span class="spinner-label">Large</span>
+  </div>
+
+</body>
+</html>

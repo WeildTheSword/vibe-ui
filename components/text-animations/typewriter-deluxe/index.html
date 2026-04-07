@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typewriter Deluxe</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  .typewriter {
+    font-family: ui-monospace, 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: #e2e8f0;
+    white-space: nowrap;
+    position: relative;
+    min-height: 1.4em;
+  }
+
+  .typewriter .text {
+    display: inline;
+  }
+
+  .typewriter .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.15em;
+    background: #a78bfa;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 0.6s step-end infinite;
+    border-radius: 1px;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="typewriter">
+    <span class="text" id="text"></span><span class="cursor"></span>
+  </div>
+<script>
+(function () {
+  const phrases = ["Build something amazing.", "Ship it fast.", "Make it beautiful."];
+  const el = document.getElementById("text");
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+
+  function randSpeed(base, variance) {
+    return base + Math.random() * variance;
+  }
+
+  function tick() {
+    const phrase = phrases[phraseIdx];
+
+    if (!deleting) {
+      charIdx++;
+      el.textContent = phrase.slice(0, charIdx);
+      if (charIdx === phrase.length) {
+        setTimeout(function () { deleting = true; tick(); }, 1800);
+        return;
+      }
+      setTimeout(tick, randSpeed(50, 80));
+    } else {
+      charIdx--;
+      el.textContent = phrase.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(tick, 400);
+        return;
+      }
+      setTimeout(tick, randSpeed(25, 40));
+    }
+  }
+
+  setTimeout(tick, 600);
+})();
+</script>
+</body>
+</html>

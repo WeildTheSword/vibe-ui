@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Wave Text</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  .gradient-wave {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    background: linear-gradient(
+      90deg,
+      #0ff4f4,
+      #6366f1,
+      #a855f7,
+      #ec4899,
+      #f43f5e,
+      #a855f7,
+      #6366f1,
+      #0ff4f4,
+      #06b6d4,
+      #6366f1,
+      #a855f7,
+      #ec4899
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    position: relative;
+  }
+
+  .gradient-wave::after {
+    content: 'Hello World';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      #0ff4f4,
+      #6366f1,
+      #a855f7,
+      #ec4899,
+      #f43f5e,
+      #a855f7,
+      #6366f1,
+      #0ff4f4,
+      #06b6d4,
+      #6366f1,
+      #a855f7,
+      #ec4899
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    filter: blur(30px) brightness(1.5);
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  @keyframes gradient-flow {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+</style>
+</head>
+<body>
+  <h1 class="gradient-wave">Hello World</h1>
+</body>
+</html>
